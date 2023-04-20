@@ -1,7 +1,13 @@
-import {StyleSheet, Platform, SafeAreaView, Text, FlatList, View, TextInput, TouchableOpacity} from 'react-native';
-import React, { useState } from 'react';
-import { CheckBox } from '@rneui/base';
+import {StyleSheet, Platform, SafeAreaView, Text, View, TextInput, TouchableOpacity} from 'react-native'
+import React, { useState } from 'react'
+import { CheckBox } from '@rneui/base'
+import { SwipeListView } from 'react-native-swipe-list-view' //new import
 
+// Option 1: Add two new components
+
+// link to repo
+
+//Styles
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -35,18 +41,44 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontWeight: 'bold',
     fontSize: 16,
+  },
+  // New styles added below
+  deleteButton: {
+    backgroundColor: 'red',
+    justifyContent: 'center',
+    textAlign: 'center',
+    alignItems: 'center',
+    width: 60,
+    height: '50%',
+    margin: 20
+  },
+  deleteButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  header: {
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  title: {
+    color: 'black',
+    fontSize: 50,
+    fontWeight: 'bold',
   }
 })
 
+// Original code
 const myTasks = [
   { key: "1", description: 'Porfolio Submission', completed: false },
   { key: "2", description: 'Do laundry', completed: false },
   { key: "3", description: 'Server Side Final', completed: false },
-];
-
+]
+// Original code
 const App = () => {
-  const [tasks, setTasks] = useState(myTasks);
-   const [newTask, setNewTask] = useState('');
+   const [tasks, setTasks] = useState(myTasks)
+   const [newTask, setNewTask] = useState('')
+   const [title, setTitle] = useState('Task List')
 
   const renderTask = ({ item }) => {
     return (
@@ -57,11 +89,11 @@ const App = () => {
         onPress={() => {
           const updatedTasks = tasks.map((t) => {
             if (t.key === item.key) {
-              return { ...t, completed: !t.completed };
+              return { ...t, completed: !t.completed }
             }
-            return t;
-          });
-          setTasks(updatedTasks);
+            return t
+          })
+          setTasks(updatedTasks)
         }}
         titleProps={{
           style: item.completed
@@ -69,8 +101,10 @@ const App = () => {
           : {}
         }}
       />
-    );
-  };
+    )
+  }
+ 
+  // Original code 
     const handleAddTask = () => {
     if (newTask.trim() !== '') {
       const updatedTasks = [
@@ -80,20 +114,85 @@ const App = () => {
           description: newTask,
           completed: false,
         },
-      ];
-      setTasks(updatedTasks);
-      setNewTask('');
+      ]
+      setTasks(updatedTasks)
+      setNewTask('')
     }
-  };
+  }
+  
+// 1 New component for a delete task action. 
+// Uses state 'tasks'
+// Uses parameter 'key'
+  const handleDeleteTask = (key) => {
+    const updatedTasks = tasks.filter((t) => t.key !== key)
+    setTasks(updatedTasks)
+  }
+
+// 2 New component for user input. Changing the title using state and props.
+// Uses states 'editing' and 'newTitle'
+// Uses parameters 'title' and 'setTitle'
+  const TitleChanger = ({ title, setTitle }) => {
+    const [editing, setEditing] = useState(false)
+    const [newTitle, setNewTitle] = useState(title)
+// User input handlers
+    const handleTitlePress = () => {
+      setEditing(true)
+      setNewTitle(title)
+    }
+    const handleTitleChange = (value) => {
+      setNewTitle(value)
+    }
+    const handleTitleSubmit = () => {
+      setTitle(newTitle)
+      setEditing(false)
+    }
+  if (editing) {
+    return (
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.inputBox}
+          placeholder="Enter new title"
+          value={newTitle}
+          onChangeText={handleTitleChange}
+        />
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={handleTitleSubmit}
+        >
+          <Text style={styles.addButtonText}>Save</Text>
+        </TouchableOpacity>
+      </View>
+    )
+  } else {
+    return (
+      <TouchableOpacity onPress={handleTitlePress}>
+        <Text h3 style={styles.h3Container}>
+          {title}
+        </Text>
+      </TouchableOpacity>
+    )
+  }
+}
 
   return (
+    // Implemented handleDeleteTask inside the SwipeListView
+    // Implemented setTitle inside TitleChanger
     <SafeAreaView style={styles.container}>
-      <Text h3 style={styles.h3Container}>Task List</Text>
-      <FlatList
+      <TitleChanger title={title} setTitle={setTitle} />
+      <SwipeListView
         data={tasks}
         renderItem={renderTask}
+        renderHiddenItem={({ item }) => (
+      <TouchableOpacity
+        style={styles.deleteButton}
+        onPress={() => handleDeleteTask(item.key)}>
+      <Text style={styles.deleteButtonText}>delete</Text>
+      </TouchableOpacity>
+      )}
+        leftOpenValue={100}
+        rightOpenValue={-200}
         keyExtractor={(item) => item.key.toString()}
-      /> 
+      />
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.inputBox}
@@ -103,13 +202,12 @@ const App = () => {
         />
         <TouchableOpacity
           style={styles.addButton}
-          onPress={handleAddTask}
-        >
+          onPress={handleAddTask}>
           <Text style={styles.addButtonText}>Add</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView> 
   )
-}
+} 
 
-export default App;
+export default App

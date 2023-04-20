@@ -21,12 +21,13 @@
     "react-dom": "18.2.0",
     "react-native": "0.71.6",
     "react-native-elements": "^3.4.3",
+    "react-native-swipe-list-view": "^3.2.9",
     "react-native-web": "~0.18.10"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
     "gh-pages": "^5.0.0"
   },
-  "private": true
-  
+  "private": true,
+  "homepage": "http://callievaughn.github.io/Porfolio_project1"
 }
