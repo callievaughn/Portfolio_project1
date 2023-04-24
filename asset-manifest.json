@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.js": "/callievaughn/Portfolio_project1/static/js/main.1b2ebd8a.js",
+    "static/js/204.a02c9b52.js": "/callievaughn/Portfolio_project1/static/js/204.a02c9b52.js",
+    "favicon.ico": "/callievaughn/Portfolio_project1/favicon.ico",
+    "index.html": "/callievaughn/Portfolio_project1/index.html",
+    "static/media/rocket.png": "/callievaughn/Portfolio_project1/static/media/rocket.d2f3bf41d5e4515c39a9.png",
+    "static/media/bell.png": "/callievaughn/Portfolio_project1/static/media/bell.cf04af27d6a651c4b904.png",
+    "favicon-32.png": "/callievaughn/Portfolio_project1/favicon-32.png",
+    "static/media/star.png": "/callievaughn/Portfolio_project1/static/media/star.69c7138684828d68fe5a.png",
+    "static/media/heart.png": "/callievaughn/Portfolio_project1/static/media/heart.23b5c2c0eb77d50ff1b4.png",
+    "favicon-16.png": "/callievaughn/Portfolio_project1/favicon-16.png",
+    "serve.json": "/callievaughn/Portfolio_project1/serve.json",
+    "manifest.json": "/callievaughn/Portfolio_project1/manifest.json",
+    "main.1b2ebd8a.js.map": "/callievaughn/Portfolio_project1/static/js/main.1b2ebd8a.js.map",
+    "204.a02c9b52.js.map": "/callievaughn/Portfolio_project1/static/js/204.a02c9b52.js.map"
+  },
+  "entrypoints": [
+    "static/js/204.a02c9b52.js",
+    "static/js/main.1b2ebd8a.js"
+  ]
+}
