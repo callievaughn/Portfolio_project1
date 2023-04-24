@@ -1,4 +1,4 @@
-import {StyleSheet, Platform, SafeAreaView, Text, View, TextInput, TouchableOpacity} from 'react-native'
+import {StyleSheet, Platform, SafeAreaView, Text, View, TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { CheckBox } from '@rneui/base'
 import { SwipeListView } from 'react-native-swipe-list-view' //new import
@@ -178,7 +178,7 @@ const App = () => {
     // Implemented handleDeleteTask inside the SwipeListView
     // Implemented setTitle inside TitleChanger
     <SafeAreaView style={styles.container}>
-      <TitleChanger title={title} setTitle={setTitle} />
+      <TitleChanger title={title} setTitle={setTitle}/>
       <SwipeListView
         data={tasks}
         renderItem={renderTask}
