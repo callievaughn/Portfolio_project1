@@ -1,7 +1,8 @@
 
 Option 1: Add two new components
 
-LINK TO REPO
+to repo:
+https://github.com/callievaughn/Portfolio_project1
 
 
 1.  A 'delete task' component that will allow the user to swipe and click the revealed delete button.
